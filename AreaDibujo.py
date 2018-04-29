@@ -5,19 +5,15 @@ from PySide.QtGui import *
 import sys
 
 class EspacioDbj(QWidget):
-	def __init__(self,parent=None):
-		super(EspacioDbj,self).__init__(parent=parent)
-		self.cordenada=None
-		self.setGeometry(0,0,200,100)
-		self.update()
-	def paintEvent(self,even):
-		if self.cordenada:
-			self.scene=QPainter(self)
-			self.scene.begin(self)
-			self.scene.setBackground(Qt.blue)
-			self.scene.setPen(Qt.blue)
-			self.scene.drawPoint(self.cordenada[0],self.cordenada[1])
-			self.scene.end()
-		#parent.paintEvent(self,even)
-	def setCordenada(self,dato):
-		self.cordenada=dato
+	def __init__(self):
+		super(EspacioDbj,self).__init__()
+		self.setGeometry(0,0,700,500)
+		self.imgc=QLabel(self)
+		self.imgc.setGeometry(0,0,700,500)
+		self.img=QImage(700,500,QImage.Format_RGB32)
+		self.color= qRgb(189, 149, 39)  # 0xffbd9527
+	def pintar(self,x,y):
+		self.img.setPixel(x, y, self.color)
+		self.img.save("imagen.jpg","jpg")
+		self.imgc.setPixmap(QPixmap('imagen.jpg'))
+		self.imgc.show()

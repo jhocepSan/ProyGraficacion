@@ -8,7 +8,7 @@ class VentanaPrincipal(QMainWindow):
 		super(VentanaPrincipal,self).__init__()
 		self.setGeometry(50,60,700,500)
 		self.setWindowTitle("Proyecto Graficacion")
-		self.sectorGr=AreaDibujo.EspacioDbj(self)
+		self.sectorGr=AreaDibujo.EspacioDbj()
 		self.menu()
 		self.statusBar().showMessage("Este es la parte de Informacion")
 		self.setCentralWidget(self.sectorGr)
@@ -26,9 +26,9 @@ class VentanaPrincipal(QMainWindow):
 		self.drawBrMenu.addAction(rectabr)
 		self.drawBrMenu.addAction(cirbr)
 	def rectaBr(self):
-		for x in range(200):
-			self.sectorGr.setCordenada([x,2*x])
-			self.sectorGr.update()
+		for i in range(200):
+			self.sectorGr.pintar(i,1)
+			self.repaint()
 
 def main():
 	app=QApplication(sys.argv)
